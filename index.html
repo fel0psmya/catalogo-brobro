@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | B-R-O-Bró</title>
+    <link rel="stylesheet" href="./css/output.css">
+</head>
+<body class="bg-bg-primary text-txt-primary min-h-screen flex flex-col">
+
+    <header class="bg-bg-surface border-b border-border-default shadow-sm py-sm px-md md:px-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-sm">
+                <span class="text-h2 text-brand">🌶️ B-R-O-Bró</span>
+            </div>
+            <nav>
+                <span class="text-body-sm text-txt-secondary">Catálogo Oficial</span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="grow max-w-7xl mx-auto w-full px-md md:px-lg py-xl">
+        
+        <section class="text-center mb-2xl">
+            <h1 class="text-display mb-sm">Nossos Produtos</h1>
+            <p class="text-body-lg text-txt-secondary mx-auto">
+                Escolha sua pimenta favorita, selecione o ponto de venda mais próximo e faça seu pedido diretamente pelo WhatsApp.
+            </p>
+        </section>
+
+        <div id="loading-state" class="text-center py-2xl">
+            <p class="text-h3 text-txt-secondary animate-pulse">Carregando o catálogo... 🔥</p>
+        </div>
+
+        <div id="error-state" class="hidden text-center py-2xl">
+            <p class="text-h4 text-red mb-sm">Ops! Não foi possível carregar os produtos.</p>
+            <p class="text-body-md text-txt-secondary">Verifique sua conexão com o backend e tente novamente.</p>
+        </div>
+
+        <div id="produtos-grid" class="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg hidden">
+        </div>
+    </main>
+
+    <footer class="bg-bg-surface border-t border-border-default py-lg mt-auto">
+        <div class="max-w-7xl mx-auto px-md text-center">
+            <p class="text-body-sm text-txt-secondary">© 2026 B-R-O-Bró. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="./js/config.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+</html>

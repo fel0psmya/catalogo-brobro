@@ -1,0 +1,29 @@
+@theme {
+  /* Cores da Marca B-R-O-Bró */
+  --color-brand: #a4133c;
+  --color-brand-hover: #ad2a4f;
+  --color-brand-selected: #b23659;
+  --color-brand-disabled: #e1e1e1;
+
+  /* Fundos */
+  --color-bg-primary: #f6f6f6;
+  --color-bg-surface: #f1f1f1;
+
+  /* Textos */
+  --color-txt-primary: #1a1a1a;
+  --color-txt-secondary: #4b5563;
+  --color-txt-on-brand: #f6f6f6;
+  --color-txt-link: #a4133c;
+  --color-txt-disabled: #b5b7b9;
+  --color-txt-placeholder: #b5b7b9;
+
+  /* Cores de Alerta / Suporte */
+  --color-green: #045d44;
+  --color-red: #991b1b;
+  --color-yellow: #7b4305;
+  --color-blue: #1e40af;
+
+  /* Bordas */
+  --color-border-default: #4b5563;
+  --color-border-active: #a4133c;
+}

@@ -1,0 +1,66 @@
+@theme {
+  /* Espaçamentos e Tamanhos */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-ms: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-1-5xl: 48px;
+  --spacing-2xl: 64px;
+
+  /* Bordas */
+  --border-thin: 1px;
+  --border-bold: 2px;
+  --border-accent: 4px;
+
+  /* Arredondamentos */
+  --radius-sm: 8px;
+  --radius-xs: 4px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px 0 rgb(26 26 26 / 0.08);
+  --shadow-md: 0 4px 12px 0 rgb(26 26 26 / 0.12);
+  --shadow-lg: 0 12px 24px 0 rgb(26 26 26 / 0.12);
+}
+
+@layer utilities {
+  /* Safe areas — respeita o notch do iPhone */
+  html {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+      env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  /* Impede zoom automático em inputs no mobile */
+  @media (max-width: 767px) {
+    input[type="text"],
+    input[type="number"],
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  /* Utilitário para esconder a scrollbar */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
