@@ -1,0 +1,12 @@
+# Dependências do Node
+node_modules/
+
+# Arquivo CSS compilado pelo Tailwind (será gerado em ambiente dev/produção)
+css/output.css
+
+# Arquivo de configuração local (onde fica a URL do container Docker do backend)
+js/config.js
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
