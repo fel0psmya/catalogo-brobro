@@ -3,7 +3,7 @@
 /* Fontes do Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
-/* Importe de arquivos locais */
+/* Import de arquivos locais */
 @import "./tokens/colors.css";
 @import "./tokens/typography.css";
 @import "./tokens/layout.css";
