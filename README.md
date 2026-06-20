@@ -23,14 +23,16 @@ A arquitetura foi pensada para manter o código modularizado mesmo sem o uso de 
 
 ```text
 catalogo-brobro/
-├── assets/                 # Imagens, logos e ícones
+├── assets/                 # Imagens, logos e ícones da marca
 ├── css/
-│   ├── tokens/             # Variáveis nativas de CSS (cores, tipografia)
-│   ├── input.css           # Entrada do Tailwind
-│   └── output.css          # CSS final gerado (ignorado pelo Git)
+│   ├── tokens/             # Variáveis nativas de CSS (cores, tipografia, layout)
+│   ├── input.css           # Arquivo base de entrada do Tailwind
+│   └── output.css          # CSS final compilado
 ├── js/
 │   ├── api.js              # Lógica de integração com o backend (fetch)
 │   ├── config.js           # Variáveis de ambiente locais (ignorado pelo Git)
-│   └── main.js             # Lógica de interface e manipulação do DOM
-├── index.html              # Página principal do catálogo
-└── package.json            # Gerenciamento do Tailwind CLI
+│   └── main.js             # Lógica de interface, filtros e manipulação do DOM da Home
+├── pages/
+│   └── produto.html        # Página de detalhes do produto e redirecionamento pro WhatsApp
+├── index.html              # Página principal do catálogo (Home)
+└── package.json            # Gerenciamento de scripts do Tailwind CLI
