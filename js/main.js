@@ -3,6 +3,13 @@ let todosProdutos = [];
 let filtroCategoriaAtual = "todos";
 let termoBuscaAtual = "";
 
+// Mapeamento de tipos para exibição
+const tipoLabels = {
+    molho: "Molho",
+    geleia: "Geleia",
+    conserva: "Conserva",
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🔥 Inicializando o Catálogo B-R-O-Bró...");
 
@@ -14,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Inicializa os listeners de eventos para busca e filtro
         configurarFiltros();
 
-        // Renderização inicial (Chama a função mesmo se ela for provisória por enquanto)
+        // Renderização inicial
         executarFiltragem();
 
     } catch (error) {
@@ -89,16 +96,63 @@ window.renderizarCatalogo = function(produtosFiltrados) {
         return;
     }
 
-    // Restaura as colunas do grid e injeta caixas simples de teste
+    // Restaura as colunas do grid
     grid.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-3");
     
     produtosFiltrados.forEach(produto => {
-        grid.innerHTML += `
-            <div class="bg-bg-surface border border-border-default p-md rounded-sm shadow-sm">
-                <span class="text-label text-brand uppercase font-bold tracking-widest">${produto.tipo}</span>
+        const imagemUrl = produto.imagem_url || produto.imagem_path || null;
+        const tipoLabel = tipoLabels[produto.tipo] || produto.tipo;
+        const preco = Number(produto.preco_varejo).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        });
+
+        const card = document.createElement("div");
+        card.className = [
+            "bg-bg-surface",
+            "border border-border-default",
+            "rounded-sm",
+            "shadow-sm",
+            "flex flex-col",
+            "cursor-pointer",
+            "hover:shadow-md",
+            "hover:-translate-y-1",
+            "transition-all duration-200",
+            "overflow-hidden",
+        ].join(" ");
+
+        card.innerHTML = `
+            <div class="aspect-square w-full overflow-hidden bg-bg-primary flex items-center justify-center">
+                ${
+                    imagemUrl
+                        ? `<img
+                            src="${imagemUrl}"
+                            alt="${produto.nome}"
+                            class="w-full h-full object-cover"
+                            onerror="this.parentElement.innerHTML='<span class=\\'text-4xl\\'>🌶️</span>'"
+                          />`
+                        : `<span class="text-4xl">🌶️</span>`
+                }
+            </div>
+
+            <div class="flex flex-col gap-xs p-md flex-1">
+                <span class="text-label text-brand uppercase font-bold tracking-widest">${tipoLabel}</span>
                 <h3 class="text-h3 text-txt-primary mt-xs mb-sm">${produto.nome}</h3>
-                <p class="text-body-sm text-txt-secondary">Preço: R$ ${produto.preco_varejo}</p>
+                <p class="text-body-sm text-txt-secondary line-clamp-2 flex-1">${produto.descricao || ""}</p>
+                <div class="flex items-center justify-between mt-sm pt-sm border-t border-border-default">
+                    <span class="text-h4 text-brand font-bold">${preco}</span>
+                    <span class="text-label text-txt-secondary bg-bg-primary px-xs py-1 rounded-sm border border-border-default">
+                        Ver detalhes →
+                    </span>
+                </div>
             </div>
         `;
+
+        // Navegação ao clicar no card
+        card.addEventListener("click", () => {
+            window.location.href = `produto.html?id=${produto.id}`;
+        });
+
+        grid.appendChild(card);
     });
 };
