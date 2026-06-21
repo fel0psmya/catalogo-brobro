@@ -11,21 +11,20 @@ const tipoLabels = {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-    console.log("🔥 Inicializando o Catálogo B-R-O-Bró...");
+    console.log("Inicializando o Catálogo B-R-O-Bró");
 
     try {
         const resposta = await buscarProdutos();
-        // Captura o array de produtos de dentro do objeto retornado pela API (.products)
-        todosProdutos = resposta.products || [];
         
-        // Inicializa os listeners de eventos para busca e filtro
+        // Captura o array de produtos, filtra apenas os ativos, ordena por id e armazena na variável global
+        const listaBruta = resposta.products || [];
+        const produtosAtivos = listaBruta.filter(produto => produto.ativo === true);
+        todosProdutos = [...produtosAtivos].sort((a, b) => a.id - b.id);
+        
         configurarFiltros();
-
-        // Renderização inicial
         executarFiltragem();
-
     } catch (error) {
-        console.error("❌ Erro ao inicializar catálogo:", error);
+        console.error("Erro ao inicializar catálogo:", error);
         document.getElementById("loading-state").classList.add("hidden");
         document.getElementById("error-state").classList.remove("hidden");
     }
@@ -100,7 +99,13 @@ window.renderizarCatalogo = function(produtosFiltrados) {
     grid.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-3");
     
     produtosFiltrados.forEach(produto => {
-        const imagemUrl = produto.imagem_url || produto.imagem_path || null;
+        const BUCKET = "SigBro_imgs/";
+        const urlBase = `${CONFIG.SUPABASE_URL}/storage/v1/object/public/`;
+        
+        const imagemUrl = produto.imagem_path 
+            ? `${urlBase}${BUCKET}${produto.imagem_path}`
+            : null;
+
         const tipoLabel = tipoLabels[produto.tipo] || produto.tipo;
         const preco = Number(produto.preco_varejo).toLocaleString("pt-BR", {
             style: "currency",
