@@ -155,9 +155,9 @@ window.renderizarCatalogo = function(produtosFiltrados) {
 
         // Navegação ao clicar no card
         card.addEventListener("click", () => {
-            window.location.href = `produto.html?id=${produto.id}`;
+            window.location.href = `./pages/produto.html?id=${produto.id}`;
         });
 
         grid.appendChild(card);
     });
-};
+}

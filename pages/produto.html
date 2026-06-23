@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto | B-R-O-Bró</title>
+    <link rel="icon" type="image/png" href="../assets/favicon-provisorio.png">
+    <link rel="stylesheet" href="../css/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="bg-bg-primary text-txt-primary min-h-screen flex flex-col">
+
+    <header class="bg-bg-surface shadow-sm py-ms px-md md:px-lg shrink-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-sm">
+                <img src="../assets/logo-provisoria.png" alt="Logo da B-R-O-Bró" class="h-10 w-auto">
+                <span class="text-h4 font-bold">B-R-O-Bró</span>
+            </div>
+            <a href="../index.html" class="text-body-sm font-bold text-brand hover:underline transition-colors">
+                &larr; Voltar ao Catálogo
+            </a>
+        </div>
+    </header>
+
+    <main class="grow max-w-7xl mx-auto w-full px-md md:px-lg py-xl flex flex-col gap-xl">
+
+        <div id="loading-state" class="py-2xl flex flex-col items-center justify-center">
+            <svg class="animate-spin h-12 w-12 text-brand mb-sm" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+            </svg>
+            <p class="text-h4 text-txt-secondary">Carregando detalhes do Produto...</p>
+        </div>
+
+        <div id="error-state" class="hidden text-center py-2xl">
+            <p class="text-h4 text-red mb-sm" data-error-message>Não foi possível carregar o produto.</p>
+            <a href="../index.html"
+                class="inline-block mt-sm px-md py-xs bg-brand text-txt-on-brand font-bold rounded-xs transition-colors hover:bg-brand-hover">
+                Voltar ao Catálogo
+            </a>
+        </div>
+
+        <div id="product-shell" class="hidden flex flex-col gap-xl">
+
+            <section
+                class="grid grid-cols-1 md:grid-cols-2 gap-lg bg-bg-surface p-md md:p-lg border border-border-default rounded-sm shadow-sm">
+
+                <div id="product-image-col"
+                    class="aspect-square w-full overflow-hidden bg-bg-primary flex items-center justify-center rounded-sm border border-border-default">
+                </div>
+
+                <div class="flex flex-col gap-md">
+                    <div>
+                        <div class="flex items-center justify-between mb-xs">
+                            <span id="product-type"
+                                class="text-label text-brand uppercase font-bold tracking-widest"></span>
+                            <span id="product-status"></span>
+                        </div>
+                        <h1 id="product-title" class="text-h2 font-bold text-txt-primary mt-xs"></h1>
+
+                        <div id="carolina-badge-container" class="mt-2 mb-1"></div>
+
+                        <p id="product-subtitle" class="text-body-sm text-txt-secondary mt-sm"></p>
+                    </div>
+
+                    <div
+                        class="bg-bg-primary border border-border-default rounded-sm p-sm flex flex-col sm:flex-row gap-sm justify-between">
+                        <div>
+                            <p class="text-label text-txt-secondary uppercase tracking-widest">Varejo</p>
+                            <p id="price-varejo" class="text-h3 font-bold text-brand mt-1"></p>
+                        </div>
+                        <div class="hidden sm:block w-px bg-border-default"></div>
+                        <div>
+                            <p class="text-label text-txt-secondary uppercase tracking-widest">Atacado</p>
+                            <p id="price-atacado" class="text-h3 font-bold text-txt-primary mt-1"></p>
+                        </div>
+                    </div>
+
+                    <div id="product-spice" class="flex flex-col gap-xs">
+                    </div>
+
+                    <hr class="border-border-default">
+
+                    <div>
+                        <h3 class="text-h4 font-bold text-txt-primary mb-sm">Ficha Técnica</h3>
+                        <dl id="product-attrs" class="space-y-2">
+                        </dl>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex flex-col gap-md">
+                <div class="flex flex-wrap items-end justify-between border-b border-border-default pb-sm">
+                    <h2 id="pdv-section-title" class="text-h3 font-bold text-txt-primary">Onde encontrar</h2>
+                    <span id="pdv-count"
+                        class="text-body-sm text-txt-secondary font-semibold bg-bg-surface px-3 py-1 border border-border-default rounded-full"></span>
+                </div>
+
+                <div id="pdv-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
+                </div>
+
+                <div id="pdv-empty"
+                    class="hidden text-center py-lg border border-dashed border-border-default rounded-sm bg-bg-surface">
+                    <p class="text-body-sm text-txt-secondary">Nenhum ponto de venda cadastrado para este produto no
+                        momento.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-bg-alt py-lg mt-auto">
+        <div class="max-w-7xl mx-auto px-md text-center">
+            <p class="text-body-sm text-txt-on-brand">© 2026 B-R-O-Bró. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/produto.js"></script>
+</body>
+
+</html>
