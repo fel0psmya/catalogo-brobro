@@ -1,24 +1,33 @@
+// Variáveis de estado
+let todosProdutos = [];
+let filtroCategoriaAtual = "todos";
+let termoBuscaAtual = "";
+
+// Mapeamento de tipos para exibição
+const tipoLabels = {
+    molho: "Molho",
+    geleia: "Geleia",
+    conserva: "Conserva",
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
-    console.log("Inicializando o Catálogo B-R-O-Bró...");
+    console.log("Inicializando o Catálogo B-R-O-Bró");
 
     try {
-        const produtos = await buscarProdutos();
-        console.log("Produtos recebidos do backend:", produtos);
+        const resposta = await buscarProdutos();
         
-        const pdvs = await buscarPontosDeVenda();
-        console.log("Pontos de Venda recebidos:", pdvs);
+        // Captura o array de produtos, filtra apenas os ativos, ordena por id e armazena na variável global
+        const listaBruta = resposta.products || [];
+        const produtosAtivos = listaBruta.filter(produto => produto.ativo === true);
+        todosProdutos = [...produtosAtivos].sort((a, b) => a.id - b.id);
         
-        if (produtos && produtos.length > 0) {
-            document.getElementById("loading-state").innerHTML = "<p class='text-green text-h4'>Conexão estabelecida com sucesso! Verifique o console.</p>";
-        }
+        configurarFiltros();
+        executarFiltragem();
     } catch (error) {
-        console.error("Erro ao conectar:", error);
+        console.error("Erro ao inicializar catálogo:", error);
         document.getElementById("loading-state").classList.add("hidden");
         document.getElementById("error-state").classList.remove("hidden");
     }
-<<<<<<< Updated upstream
-});
-=======
 });
 
 function configurarFiltros() {
@@ -151,5 +160,4 @@ window.renderizarCatalogo = function(produtosFiltrados) {
 
         grid.appendChild(card);
     });
-};
->>>>>>> Stashed changes
+}

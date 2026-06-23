@@ -3,47 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo | B-R-O-Bró</title>
+    <title>B-R-O-Bró</title>
+    <link rel="icon" type="image/png" href="./assets/favicon-provisorio.png">
     <link rel="stylesheet" href="./css/output.css">
 </head>
 <body class="bg-bg-primary text-txt-primary min-h-screen flex flex-col">
 
-    <header class="bg-bg-surface border-b border-border-default shadow-sm py-sm px-md md:px-lg">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <header class="bg-bg-surface shadow-sm py-ms px-md md:px-lg shrink-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-center">
             <div class="flex items-center gap-sm">
-                <span class="text-h2 text-brand">🌶️ B-R-O-Bró</span>
+                <img src="./assets/logo-provisoria.png" alt="Logo da B-R-O-Bró" class="h-10 w-auto">
+                <span class="text-h4 font-bold">B-R-O-Bró</span>
             </div>
-            <nav>
-                <span class="text-body-sm text-txt-secondary">Catálogo Oficial</span>
-            </nav>
         </div>
     </header>
 
     <main class="grow max-w-7xl mx-auto w-full px-md md:px-lg py-xl">
         
-        <section class="text-center mb-2xl">
-            <h1 class="text-display mb-sm">Nossos Produtos</h1>
-            <p class="text-body-lg text-txt-secondary mx-auto">
-                Escolha sua pimenta favorita, selecione o ponto de venda mais próximo e faça seu pedido diretamente pelo WhatsApp.
-            </p>
+        <section class="mb-xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-md items-center justify-center">          
+                <div class="w-full grow">
+                    <input 
+                        type="search" 
+                        id="search-input" 
+                        placeholder="Buscar pimenta pelo nome..." 
+                        class="w-full bg-bg-primary border border-border-default rounded-xs p-sm text-body-sm text-txt-primary focus:border-border-active outline-none placeholder:text-txt-placeholder"
+                    >
+                </div>
+
+                <div id="filter-buttons" class="flex flex-wrap gap-sm justify-center shrink-0">
+                    <button data-category="todos" class="btn-filter bg-brand text-txt-on-brand px-md py-xs rounded-xs text-body-sm font-bold shadow-sm transition-colors cursor-pointer">
+                        Todos
+                    </button>
+                    <button data-category="molho" class="btn-filter bg-bg-primary hover:bg-brand-hover hover:text-txt-on-brand text-txt-secondary px-md py-xs rounded-xs text-body-sm font-bold border border-border-default transition-colors cursor-pointer">
+                        Molhos
+                    </button>
+                    <button data-category="geleia" class="btn-filter bg-bg-primary hover:bg-brand-hover hover:text-txt-on-brand text-txt-secondary px-md py-xs rounded-xs text-body-sm font-bold border border-border-default transition-colors cursor-pointer">
+                        Geleias
+                    </button>
+                    <button data-category="conserva" class="btn-filter bg-bg-primary hover:bg-brand-hover hover:text-txt-on-brand text-txt-secondary px-md py-xs rounded-xs text-body-sm font-bold border border-border-default transition-colors cursor-pointer">
+                        Conservas
+                    </button>
+                </div>
+            </div>
         </section>
 
-        <div id="loading-state" class="text-center py-2xl">
-            <p class="text-h3 text-txt-secondary animate-pulse">Carregando o catálogo... 🔥</p>
+        <div id="loading-state" class="py-2xl flex flex-col items-center justify-center">
+            <svg class="animate-spin h-12 w-12 text-brand mb-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-h4 text-txt-secondary">Carregando catálogo...</p>
         </div>
 
         <div id="error-state" class="hidden text-center py-2xl">
-            <p class="text-h4 text-red mb-sm">Ops! Não foi possível carregar os produtos.</p>
-            <p class="text-body-md text-txt-secondary">Verifique sua conexão com o backend e tente novamente.</p>
+            <p class="text-h4 text-red mb-sm">Não foi possível carregar os produtos.</p>
         </div>
 
         <div id="produtos-grid" class="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg hidden">
         </div>
     </main>
 
-    <footer class="bg-bg-surface border-t border-border-default py-lg mt-auto">
+    <footer class="bg-bg-alt py-lg mt-auto">
         <div class="max-w-7xl mx-auto px-md text-center">
-            <p class="text-body-sm text-txt-secondary">© 2026 B-R-O-Bró. Todos os direitos reservados.</p>
+            <p class="text-body-sm text-txt-on-brand">© 2026 B-R-O-Bró. Todos os direitos reservados.</p>
         </div>
     </footer>
 
